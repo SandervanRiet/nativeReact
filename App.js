@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {HomeScreen} from "./screens/HomeScreen";
+import {SafeAreaProvider} from "react-native-safe-area-context/src/SafeAreaContext";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NAV_EVENTS, NAV_HOME, NAV_MOVIES} from "./navigation_constants";
+import {MovieScreen} from "./screens/MoviesScreen";
+import {MoviesProvider} from "./contexts/MoviesContext";
+import {EventScreen} from "./screens/EventScreen";
 
-export default function App() {
+function ProvidedApp() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <>
+        <Stack.Navigator>
+          <Stack.Screen name={NAV_HOME} component={HomeScreen}/>
+          <Stack.Screen name={NAV_MOVIES} component={MovieScreen}/>
+            <Stack.Screen name={NAV_EVENTS} component={EventScreen}/>
+        </Stack.Navigator>
+      </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default function App() {
+  return (
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <MoviesProvider>
+            <ProvidedApp/>
+          </MoviesProvider>
+        </SafeAreaProvider>
+      </NavigationContainer>
+  );
+}
