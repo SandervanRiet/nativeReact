@@ -1,0 +1,132 @@
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
+
+const MoviesContext = createContext();
+
+export function MoviesProvider(props) {
+    const [movies, setMovies] = useState(INITIAL_DATA);
+
+    const onToggleIsSelected = useCallback(
+        (movieToToggle) => {
+            const toggledMovie = { ...movieToToggle, isSelected: !movieToToggle.isSelected };
+            console.log(toggledMovie);
+            setMovies((prevMovies) =>
+                prevMovies.map((movie) => (movieToToggle.id === movie.id ? toggledMovie : movie))
+            );
+        },
+        [setMovies]
+    );
+
+    const api = useMemo(() => ({ movies, onToggleIsSelected }), [movies, onToggleIsSelected]);
+    return <MoviesContext.Provider value={api}>{props.children}</MoviesContext.Provider>;
+}
+
+export const useMoviesContext = () => useContext(MoviesContext);
+
+const INITIAL_DATA = [
+    {
+        id: '1',
+        name: 'The Shawshank Redemption',
+        description:
+            'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+        actors: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton'],
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        time: '1994',
+        imdbScore: 9.3,
+    },
+    {
+        id: '2',
+        name: 'The Godfather',
+        description:
+            'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+        actors: ['Marlon Brando', 'Al Pacino', 'James Caan'],
+        director: 'Francis Ford Coppola',
+        duration: '2h 55min',
+        time: '1972',
+        imdbScore: 9.2,
+    },
+    {
+        id: '3',
+        name: 'The Godfather: Part II',
+        description:
+            'The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.',
+        actors: ['Al Pacino', 'Robert De Niro', 'Robert Duvall'],
+        director: 'Francis Ford Coppola',
+        duration: '3h 22min',
+        time: '1974',
+        imdbScore: 9.0,
+    },
+    {
+        id: '4',
+        name: 'The Dark Knight',
+        description:
+            'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
+        actors: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart'],
+        director: 'Christopher Nolan',
+        duration: '2h 32min',
+        time: '2008',
+        imdbScore: 9.0,
+    },
+    {
+        id: '5',
+        name: '12 Angry Men',
+        description:
+            'A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.',
+        actors: ['Henry Fonda', 'Lee J. Cobb', 'Martin Balsam'],
+        director: 'Sidney Lumet',
+        duration: '1h 36min',
+        time: '1957',
+        imdbScore: 8.9,
+    }, {
+        id: "6",
+        name: "Inception",
+        description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+        actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"],
+        director: "Christopher Nolan",
+        duration: "2h 28min",
+        time: "2010",
+        imdbScore: 8.8
+    },
+    {
+        id: "7",
+        name: "Django Unchained",
+        description: "With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
+        actors: ["Jamie Foxx", "Christoph Waltz", "Leonardo DiCaprio"],
+        director: "Quentin Tarantino",
+        duration: "2h 45min",
+        time: "2012",
+        imdbScore: 8.4
+    },
+    {
+        id: "8",
+        name: "The Lord of the Rings: The Return of the King",
+        description: "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+        actors: ["Elijah Wood", "Viggo Mortensen", "Ian McKellen"],
+        director: "Peter Jackson",
+        duration: "3h 21min",
+        time: "2003",
+        imdbScore: 8.9
+    },{
+        id: "9",
+        name: 'Avatar',
+        description: 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.',
+        actors: ['Sam Worthington', 'Zoe Saldana', 'Sigourney Weaver'],
+        director: 'James Cameron',
+        duration: '2h 42m',
+        time: '2009',
+        imdb_score: 7.8
+    },
+    {
+        id: "10",
+        name: 'Transformers',
+        description: 'An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.',
+        actors: ['Shia LaBeouf', 'Megan Fox', 'Josh Duhamel'],
+        director: 'Michael Bay',
+        duration: '2h 24m',
+        time: '2007',
+        imdb_score: 7.0
+    }
+];
+
+
+
