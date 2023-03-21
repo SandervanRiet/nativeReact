@@ -40,10 +40,10 @@ export function MyCalendar(){
             />
             {selectedDate && (
                 <View style={styles.eventsContainer}>
-                    <Text style={styles.selectedDate}>{selectedDate}</Text>
+                    <Text style={styles.selectedDate}>{formatDate(selectedDate)}</Text>
                     {events[selectedDate]?.map((event, index) => (
                         <Text style={styles.eventText} key={index}>
-                            {formatDate(selectedDate)} - {event.time} - {event.event}
+                             {event.time} - {event.event}
                         </Text>
                     ))}
                 </View>

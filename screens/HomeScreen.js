@@ -17,7 +17,6 @@ function HomeNavButton({navLink, iconName}) {
 function HomeScreenButtons() {
     return (
         <View style={styles.navbar}>
-            <HomeNavButton navLink={NAV_HOME} iconName="home" />
             <HomeNavButton navLink={NAV_MOVIES} iconName="video" />
             <HomeNavButton navLink={NAV_EVENTS} iconName="calendar-alt" />
         </View>
