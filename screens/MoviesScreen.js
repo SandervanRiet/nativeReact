@@ -1,23 +1,7 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {MoviesList} from "../components/Movies";
 
-
-export function MovieScreen() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Movies</Text>
-        </View>
-    );
+export function MoviesScreen() {
+    return(
+        <MoviesList/>
+    )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 36,
-        fontWeight: 'bold',
-    },
-});

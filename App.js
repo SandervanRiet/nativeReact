@@ -3,10 +3,11 @@ import {SafeAreaProvider} from "react-native-safe-area-context/src/SafeAreaConte
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NAV_EVENTS, NAV_HOME, NAV_MAPS, NAV_MOVIES} from "./navigation_constants";
-import {MovieScreen} from "./screens/MoviesScreen";
+
 import {MoviesProvider} from "./contexts/MoviesContext";
 import {EventScreen} from "./screens/EventScreen";
 import {MapsScreen} from "./screens/MapsScreen";
+import {MoviesScreen} from "./screens/MoviesScreen";
 
 function ProvidedApp() {
   const Stack = createNativeStackNavigator();
@@ -14,7 +15,7 @@ function ProvidedApp() {
       <>
         <Stack.Navigator>
           <Stack.Screen name={NAV_HOME} component={HomeScreen}/>
-          <Stack.Screen name={NAV_MOVIES} component={MovieScreen}/>
+          <Stack.Screen name={NAV_MOVIES} component={MoviesScreen}/>
             <Stack.Screen name={NAV_EVENTS} component={EventScreen}/>
             <Stack.Screen name={NAV_MAPS} component={MapsScreen}/>
         </Stack.Navigator>
