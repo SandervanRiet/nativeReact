@@ -29,8 +29,8 @@ export function Map() {
             >
                 <Marker
                     coordinate={{ latitude: 51.082884, longitude: 4.376696 }}
-                    title={'Grote Markt 8, 2850 Boom Belgium'}
-                    description={'Some description'}
+                    title={'Multiskoop'}
+                    description={'Grote Markt 8, 2850 Boom'}
                 >
                 </Marker>
             </MapView>
